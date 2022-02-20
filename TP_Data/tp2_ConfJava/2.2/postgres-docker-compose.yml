@@ -1,0 +1,33 @@
+version: '3'
+services:
+  movies-postgresql:
+    image: postgres:9.6.5
+    volumes:
+      - movies_db:/var/lib/postgresql
+      - movies_data:/var/lib/postgresql/data
+    networks:
+      - back
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - 5432:5432
+
+  pgadmin4:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "admin@admin.com"
+      PGADMIN_DEFAULT_PASSWORD: "admin"
+    ports:
+      - "81:80"
+    depends_on:
+      - movies-postgresql
+    networks:
+      - back
+volumes:
+  movies_data:
+  movies_db:
+
+networks:
+  back:
+
