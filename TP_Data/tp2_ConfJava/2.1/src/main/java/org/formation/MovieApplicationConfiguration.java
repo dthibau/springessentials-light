@@ -6,9 +6,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 
-@Configuration
-@ComponentScan(basePackages = "org.formation")
-@PropertySource("classpath:/application.properties")
+
 public class MovieApplicationConfiguration {
 
 	@Bean
