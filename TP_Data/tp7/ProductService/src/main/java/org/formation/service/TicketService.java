@@ -15,10 +15,6 @@ import lombok.extern.java.Log;
 @Transactional
 @Log
 public class TicketService {
-	@Value("${app.channel.order-status}")
-	public String ORDER_STATUS_CHANNEL;
-	@Value("${app.channel.ticket-status}")
-	public String TICKET_STATUS_CHANNEL;
 
 
 	@Autowired
@@ -26,11 +22,6 @@ public class TicketService {
 	
 	@Autowired
 	TicketStatusEventRepository eventRepository;
-	
-	@Autowired
-	EventService eventService;
-	
-
 	
 	public Ticket readyToPickUp(Long ticketId) {
 		
