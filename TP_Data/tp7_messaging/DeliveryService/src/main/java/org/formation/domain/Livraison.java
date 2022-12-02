@@ -8,22 +8,16 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Entity
 @Data
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
 public class Livraison {
 
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	
-	private long orderId;
+	private String noCommande;
 	
 	@OneToOne
 	private Livreur livreur;

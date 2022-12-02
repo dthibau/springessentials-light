@@ -1,39 +1,48 @@
 package org.formation.service;
 
-import org.formation.domain.ResultDomain;
+import java.util.List;
+
+import org.formation.domain.ProductRequest;
 import org.formation.domain.Ticket;
 import org.formation.domain.TicketRepository;
-import org.formation.domain.event.TicketStatusEventRepository;
+import org.formation.domain.TicketStatus;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import lombok.extern.java.Log;
-
 @Service
 @Transactional
-@Log
 public class TicketService {
-
 
 	@Autowired
 	TicketRepository ticketRepository;
 	
 	@Autowired
-	TicketStatusEventRepository eventRepository;
+	EventService eventService;
+	
+	public Ticket createTicket(Long orderId, List<ProductRequest> productsRequest) {
+		Ticket t = new Ticket();
+		t.setOrderId(""+orderId);
+		t.setProductRequests(productsRequest);
+		t.setStatus(TicketStatus.CREATED);
+		
+		t = ticketRepository.save(t);
+		
+		return t;
+	}
 	
 	public Ticket readyToPickUp(Long ticketId) {
 		
-		Ticket t = ticketRepository.findById(ticketId).orElseThrow();	
-		ResultDomain resultDomain = t.readyToPickUp();
+		Ticket t = ticketRepository.findById(ticketId).orElseThrow();
+		ChangeStatusEvent event = new ChangeStatusEvent(t, t.getStatus(),TicketStatus.READY_TO_PICK);
 		
-		ticketRepository.save(resultDomain.getTicket());
-		eventRepository.save(resultDomain.getStatusEvent());
-
-		return resultDomain.getTicket();
+		t.setStatus(TicketStatus.READY_TO_PICK);
+		eventService.notify(event);
+		
+		ticketRepository.save(t);
+		
+		return t;
 		
 
 	}
-	
 }

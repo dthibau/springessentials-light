@@ -1,6 +1,7 @@
 package org.formation.service;
 
-import org.formation.domain.event.TicketStatusEvent;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -9,7 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 public class EventService {
 
 
-	
-	public void notify(TicketStatusEvent ticketEvent) {
+	public void notify(TicketEvent ticketEvent) {
 	}
 }

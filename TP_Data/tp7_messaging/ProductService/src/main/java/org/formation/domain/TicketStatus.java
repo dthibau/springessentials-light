@@ -1,9 +1,7 @@
 package org.formation.domain;
 
 public enum TicketStatus {
-	PENDING,
-	APPROVED,
-	REJECTED,
+	CREATED,
 	READY_TO_PICK,
 	PICKED
 }
