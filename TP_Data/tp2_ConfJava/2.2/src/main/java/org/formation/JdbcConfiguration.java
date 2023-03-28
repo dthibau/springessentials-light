@@ -11,7 +11,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
 
-public class JdbConfiguration {
+public class JdbcConfiguration {
 
 	@Value("${jdbc.url}")
 	String url;
