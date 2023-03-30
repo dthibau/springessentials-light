@@ -1,0 +1,17 @@
+spring:
+  jpa:
+    show-sql: false
+    
+  security:
+    user:
+      password: secret
+
+logging:
+  level:
+    org.springframework.security: DEBUG
+  
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
