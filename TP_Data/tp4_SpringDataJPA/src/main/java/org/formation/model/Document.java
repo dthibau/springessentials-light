@@ -3,12 +3,14 @@ package org.formation.model;
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Lob;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Lob;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 
 @Entity
 public class Document implements Serializable {
@@ -22,6 +24,9 @@ public class Document implements Serializable {
 	private long id;
 	
 	private String name,contentType;
+	
+	@Column(name="doc_created")
+	private Date dateCreation;
 	
 	@Lob
 	private byte[] data;
