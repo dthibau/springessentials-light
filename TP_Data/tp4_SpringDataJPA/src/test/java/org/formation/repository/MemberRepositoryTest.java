@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.util.Date;
 import java.util.Optional;
 
-import javax.persistence.EntityManager;
+import jakarta.persistence.EntityManager;
 import javax.sql.DataSource;
 
 import org.formation.model.Document;
@@ -79,7 +79,7 @@ class MemberRepositoryTest {
 
 	@Test
 	void testingFullLoad() {
-		Member id1 = memberRepository.fullLoad(1l);
+		Member id1 = memberRepository.fullLoad(1l).get();
 		Member id2 = memberRepository.findById(1l).get();
 		entityManager.close();
 
