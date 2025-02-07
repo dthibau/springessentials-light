@@ -1,8 +1,7 @@
 package org.formation.domain;
 
-import javax.persistence.Embeddable;
 
-
+import jakarta.persistence.Embeddable;
 import lombok.Getter;
 import lombok.Setter;
 
